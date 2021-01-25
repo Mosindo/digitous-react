@@ -1,0 +1,16 @@
+.box{
+    height: 190px;
+    padding: 8px;
+    background-color:#cccccc ;
+    text-align: center;
+    margin: auto ;
+}
+
+.box:nth-child(odd){
+    background-color: #aaaaaa;
+}
+
+.material-icons{
+    font-size: 64px;
+    text-align: center;
+}
