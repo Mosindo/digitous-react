@@ -4,3 +4,7 @@ button:nth-child(even){
 button:nth-child(odd){
   background-color: red;
 }
+
+h1{
+  text-align: center;
+}
