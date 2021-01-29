@@ -2,6 +2,7 @@ import React from "react";
 import './App.css';
 import  Box from "./components/Box";
 
+
 const tempMin = -20;
 const tempMax = 40;
 const heartMin = 80;
@@ -10,44 +11,65 @@ const stepsMin = 0;
 const stepsMax = 50000;
 
 export class App extends React.Component {
-
-  
-  water ={icon:"local_drink", color:"#3A85FF",value:1.5, unit:"L",};//water
-  steps= {icon:"directions_walk", color:"black",value:3000, unit:"steps",min:stepsMin,max:stepsMax};//steps
-  heart={icon:"favorite", color:"red",value:120, unit:"bpm",min:heartMin ,max:heartMax};//heart
-  temperature = {icon:"wb_sunny", color:"yellow",value:-10, unit:"°C", min:tempMin , max : tempMax};//temperature
-    
-    
-    
-constructor(props){
-  super(props);
-  this.state ={
-    water:0,
-    haert:120,
-    temperature:-10,
-    steps :3000,
+  constructor(props){
+    super(props);
+    this.state ={
+      water:0,
+      heart:120,
+      temperature:-10,
+      steps :3000,
+      
+    };
+    //this.onHeartChange = this.onHeartChange.bind(this);
   }
- /* this.state ={
-    displayElsy:[{icon:"local_drink", color:"#3A85FF",value:1.5, unit:"L"},//water
-    {icon:"directions_walk", color:"black",value:3000, unit:"steps"},//steps
-    {icon:"favorite", color:"red",value:120, unit:"bpm"},//heart
-    {icon:"wb_sunny", color:"yellow",value:-10, unit:"°C"}],//temperature
-    //water :0,heart:120,steps: 3000, temperature:-10
-  }*/
+  onStepsChange= value =>{console.log(value.target.value)
+    this.setState({ steps:value.target.value});
+    this.calculateWater();
+  }
+  onHeartChange= value =>{console.log(value.target.value)
+    this.setState({ heart:value.target.value})
+    this.calculateWater();
+  }
+  onTempChange= value =>{console.log(value.target.value)
+    this.setState({ temperature:value.target.value})
+    this.calculateWater();
+  }
 
-}
+  calculateWater=()=>{
+    let eau= 1.5;
+    if (this.state.steps>10000){
+        eau += 0.00002 * (this.state.steps-10000) ;
+        this.setState({water:eau});
+    }
+    else{
+      this.setState({water:eau});
+    }
+
+    if (this.state.heart>120){
+      eau += 0.0008 * (this.state.heart-120) ;
+      this.setState({water:eau});
+    }
+    else{
+    this.setState({water:eau});
+    }
+    if (this.state.temperature>20){
+    eau += 0.02 * (this.state.temperature-20) ;
+    this.setState({water:eau});
+    }
+    else{
+    this.setState({water:eau});
+    }
+  }
+  
+ 
   render() {
     return (
       <div className ="container-fluid row">
-         {/*{this.state.displayElsy.map(function(affichage) {
-          
-          return <Box icon ={affichage.icon} color={affichage.color} value ={affichage.value} unit ={affichage.unit}/>;
-        })}*/}
         
-        <Box icon={this.water.icon} {...this.water}/> 
-        <Box {...this.steps}/> 
-        <Box {...this.heart}/> 
-        <Box {...this.temperature}/> 
+        <Box icon={"local_drink"} color={"#3A85FF"} value={1.5}  unit={"L" } value={this.state.water}/> 
+        <Box type={"range"} onChange = {this.onStepsChange} icon={"directions_walk"} color={"black"} value={this.state.steps} unit={" steps"} min={stepsMin} max={stepsMax}/> 
+        <Box type ={"range"}onChange={this.onHeartChange} icon ={"favorite"} color={"red"} unit={"bpm"} min = {heartMin} max={heartMax} value={this.state.heart} /> 
+        <Box type ={"range"} onChange = {this.onTempChange} icon={"wb_sunny"} color={"yellow"} value={this.state.temperature} unit={"°C"} min={tempMin}  max ={tempMax}/> 
 
       </div>
     );

@@ -13,8 +13,8 @@ export class Box extends React.Component {
           {this.props.value}
           {this.props.unit}
           </p>
-          <input type="range" id="volume" name="volume"
-           min={this.props.min} max={this.props.max} value={this.props.value} value={this.props.value} onInput={this.props.onInput} ></input>
+          <input type={this.props.type} id="volume" name="volume"
+           min={this.props.min} max={this.props.max}  value={this.props.value} onChange={this.props.onChange} ></input>
         </div>   
     
       );
