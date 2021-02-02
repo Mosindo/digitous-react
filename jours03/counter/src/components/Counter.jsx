@@ -1,5 +1,5 @@
 import React from "react";
-
+const {count ,removeFunction,addFunction= this.props}//2 eme option pour les props dans le fichier enfant ,donc retirer "this.props dans le render"
 export class Counter extends React.Component{
     render(){
         return(

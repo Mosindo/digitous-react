@@ -34,7 +34,8 @@ removeFunction=()=>{
       <div className="Container-fluid ">
 
         <h1 className="text-primary d-flex">Counter</h1>
-        <Counter count={this.state.count} addFunction={this.addFunction} removeFunction={this.removeFunction}/>
+        <Counter className="d-flex"count={this.state.count} addFunction={this.addFunction} removeFunction={this.removeFunction}/>
+        
         
       </div>
     );
