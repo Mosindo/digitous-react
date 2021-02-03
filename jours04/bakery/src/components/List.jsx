@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import App from "./../App"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export class List extends React.Component {
@@ -6,7 +7,9 @@ export class List extends React.Component {
   render() {
     return(
         <div >
-         List
+          <ul>
+            <li>{this.props.items}</li>
+          </ul>
        </div>)
   };
 }
