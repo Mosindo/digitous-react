@@ -32,15 +32,34 @@ onClickList(){
     this.setState({activTab:"Pay"});
     }
   render() {
-    return(
+    if(this.state.activTab=="Add")
+    {return(
     <div className="Container-fluid  d-flex justify-content-start">
-      <Add/>
       <Button  isSelected={this.state.activTab==="Add"?" form-control btn btn-primary":"form-control btn btn-light"} onClick={this.onClickAdd}>Add</Button>
-      <List/>
       <Button isSelected={this.state.activTab==="List"?" form-control btn btn-primary":"form-control btn btn-light"} onClick={this.onClickList}>List</Button>
-      <Pay/>
       <Button isSelected={this.state.activTab==="Pay"?" form-control btn btn-primary":" form-control btn btn-light"} onClick={this.onClickPay}>Pay</Button>
-    </div>)
+      <Add/>
+    </div>)}
+    else if (this.state.activTab=="List"){
+      return (
+      <div className="Container-fluid  d-flex justify-content-start">
+        <Button  isSelected={this.state.activTab==="Add"?" form-control btn btn-primary":"form-control btn btn-light"} onClick={this.onClickAdd}>Add</Button>
+        <Button isSelected={this.state.activTab==="List"?" form-control btn btn-primary":"form-control btn btn-light"} onClick={this.onClickList}>List</Button>
+        <Button isSelected={this.state.activTab==="Pay"?" form-control btn btn-primary":" form-control btn btn-light"} onClick={this.onClickPay}>Pay</Button>
+        <List/>
+      </div>
+      )
+    }
+    else if (this.state.activTab=="Pay"){
+      return (
+      <div className="Container-fluid  d-flex justify-content-start">
+        <Button  isSelected={this.state.activTab==="Add"?" form-control btn btn-primary":"form-control btn btn-light"} onClick={this.onClickAdd}>Add</Button>
+        <Button isSelected={this.state.activTab==="List"?" form-control btn btn-primary":"form-control btn btn-light"} onClick={this.onClickList}>List</Button>
+        <Button isSelected={this.state.activTab==="Pay"?" form-control btn btn-primary":" form-control btn btn-light"} onClick={this.onClickPay}>Pay</Button>
+        <Pay/>
+      </div>
+      )
+    }
   };
 }
 
